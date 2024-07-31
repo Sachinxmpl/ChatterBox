@@ -1,11 +1,13 @@
-import { AppBar, Box, Toolbar, Typography, Drawer, IconButton, Tooltip } from '@mui/material';
-import React, { useState } from 'react';
+import { AppBar, Box, Toolbar, Typography, Drawer, IconButton, Tooltip, Backdrop } from '@mui/material';
+import React, { lazy, Suspense, useState } from 'react';
 import { orange } from '../../constants/color';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Search as SearchIcon, Add as AddIcon, Group as GroupIcon, Logout as LogoutIcon, Notifications as NotificationIcon } from "@mui/icons-material"
 import { useNavigate } from 'react-router-dom';
-import Icon from '../Icon';
-
+import Icon from '../styled/Icon';
+const Search = lazy(() => import("../../smallComps/search"))
+const NotificationDialog = lazy(()=> import("../../smallComps/notificationDialog"))
+const NewGroupDialog = lazy(()=> import('../../smallComps/newGroupDialog'))
 
 function Header() {
 
@@ -31,7 +33,7 @@ function Header() {
     }
 
     const navigateTogroups = () => {
-      navigate("/groups")
+        navigate("/groups")
     }
 
     const handleLogout = () => {
@@ -41,8 +43,9 @@ function Header() {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position='static' elevation={0} sx={{ bgcolor: orange , height : "4rem" }} >
+                <AppBar position='static' elevation={0} sx={{ bgcolor: orange, height: "4rem" }} >
                     <Toolbar>
+
                         <Typography variant='h6' sx={{ display: { xs: "none", sm: "block" } }}>
                             chatterBox
                         </Typography>
@@ -61,18 +64,34 @@ function Header() {
                             <Icon title={"manage Groups"} icon={<GroupIcon />} clickFunction={navigateTogroups} />
                             <Icon title={"openNotifications"} icon={<NotificationIcon />} clickFunction={openNotifications} />
                             <Icon title={"logout"} icon={<LogoutIcon />} clickFunction={handleLogout} />
-
-
-
                         </Box>
-
-
 
                     </Toolbar>
                 </AppBar>
-
-
             </Box>
+            {
+                isSearch && (
+                    <Suspense fallback={<Backdrop open/>}>
+                        <Search />
+                    </Suspense>
+
+                )
+            }
+            {
+                isNotification && (
+                    <Suspense fallback={<Backdrop open/>}>
+                        <NotificationDialog />
+                    </Suspense>
+
+                )
+            }
+           {
+                isNewGroup && (
+                    <Suspense fallback={<Backdrop open/>}>
+                        <NewGroupDialog></NewGroupDialog>
+                    </Suspense>
+                )
+           }
         </>
     );
 }

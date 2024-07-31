@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./auth/ProtectRouter";
 import ErrorBoundary from "./error/ErrorBoundary";
+import {LayoutLoader} from "./components/AppLayout/Loaders"
 
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
@@ -15,7 +16,7 @@ let user = true;
 function App() {
     return (
         <BrowserRouter>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<LayoutLoader/>}>
                 <ErrorBoundary>
                     <Routes>
                         <Route element={<ProtectedRoute user={user} redirect="/login" />}>
