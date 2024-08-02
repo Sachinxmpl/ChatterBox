@@ -40,6 +40,13 @@ function Header() {
         console.log("Logged out successgully")
     }
 
+    const handleSearchClose = ()=>{
+        setIsSearch(false)
+    }
+
+    const handleNotificationClose = ()=>{
+        setIsNotification(false)
+    }
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
@@ -72,7 +79,7 @@ function Header() {
             {
                 isSearch && (
                     <Suspense fallback={<Backdrop open/>}>
-                        <Search />
+                        <Search handleClose={handleSearchClose}/>
                     </Suspense>
 
                 )
@@ -80,7 +87,7 @@ function Header() {
             {
                 isNotification && (
                     <Suspense fallback={<Backdrop open/>}>
-                        <NotificationDialog />
+                        <NotificationDialog handleClose={handleNotificationClose} />
                     </Suspense>
 
                 )
