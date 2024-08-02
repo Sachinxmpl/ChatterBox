@@ -62,14 +62,14 @@ const NotificationItem = () => {
           </Typography>
           <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
             <StyledButton
-              variant="contained"
+              variant="text"
               color="primary"
               onClick={() => friendRequestHandler({ _id, accept: true })}
             >
               Accept
             </StyledButton>
             <StyledButton
-              variant="contained"
+              variant="text"
               color="error"
               onClick={() => friendRequestHandler({ _id, accept: false })}
             >

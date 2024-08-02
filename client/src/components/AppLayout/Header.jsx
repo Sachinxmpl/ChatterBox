@@ -47,6 +47,9 @@ function Header() {
     const handleNotificationClose = ()=>{
         setIsNotification(false)
     }
+    const handleNewGroupClose = ()=>{
+        setIsNewGroup(false)
+    }
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
@@ -95,7 +98,7 @@ function Header() {
            {
                 isNewGroup && (
                     <Suspense fallback={<Backdrop open/>}>
-                        <NewGroupDialog></NewGroupDialog>
+                        <NewGroupDialog  handleClose={handleNewGroupClose}/>
                     </Suspense>
                 )
            }
