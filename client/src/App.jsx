@@ -4,6 +4,7 @@ import ProtectedRoute from "./auth/ProtectRouter";
 import ErrorBoundary from "./error/ErrorBoundary";
 import {LayoutLoader} from "./components/AppLayout/Loaders"
 
+
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
 const Chat = lazy(() => import("./pages/Chat"));

@@ -9,3 +9,5 @@ const ProtectedRoute = ({ user, redirect }) => {
 };
 
 export default ProtectedRoute;
+
+

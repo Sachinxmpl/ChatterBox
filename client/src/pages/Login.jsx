@@ -13,11 +13,11 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { VisuallyHiddenInput } from "../components/styled/VisuallyHiddenInput";
 import { usernameValidator } from "../utils/validators";
 import { useInputValidation, useStrongPassword, useFileHandler } from "6pp";
-
+import { useState } from "react";
 
 
 function Login() {
-  const [isLogin, setIsLogin] = React.useState(false);
+  const [isLogin, setIsLogin] = useState(false);
   const username = useInputValidation("", usernameValidator);
   const password = useStrongPassword("");
   const email = useInputValidation("");
@@ -48,7 +48,7 @@ function Login() {
       }}
     >
       <Paper
-        elevation={5}
+        elevation={2}
         sx={{
           padding: 2,
           display: "flex",

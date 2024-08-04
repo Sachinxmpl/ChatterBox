@@ -1,12 +1,15 @@
 import React from 'react'
 import AppLayout from "../components/AppLayout/AppLayout"
+import { Box } from '@mui/system'
+import { Typography } from '@mui/material'
 
 const Home = () => {
   return (
-    <div>
-      <h1>Welcome to the Home Page</h1>
-      <p>This is a basic React functional component.</p>
-    </div>
+    <Box bgcolor={"#ebe6e6"} height={"100%"}>
+          <Typography variant='h5' p={"2rem"} textAlign={"center"}>
+                  Select a freind to chat 
+          </Typography>
+    </Box>
   )
 }
 

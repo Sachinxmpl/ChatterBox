@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import CloseIcon from "@mui/icons-material/Close";
+// import CloseIcon from "@mui/icons-material/Close";
 import {
   Button,
   Dialog,
@@ -17,9 +17,20 @@ import { useInputValidation } from "6pp";
 
 function NewGroupDialog({ handleClose }) {
   const groupName = useInputValidation("");
+  const [members, setMembers] = useState(Samplechats);
+  const [selectedMembers , setSelectedMembers] = useState([])
 
-  const [users, setUsers] = useState(Samplechats);
-  const selectMemberHandler = () => {};
+  const selectMemberHandler = (_id) => {
+    console.log(`id is ${_id}`)
+    setSelectedMembers((prev)=> {
+      if(prev.includes(_id)){
+        return prev.filter((currId)=> currId !== _id)
+      }
+      else{
+        return [...prev,_id]
+      }
+    })
+  };
 
 
 
@@ -29,7 +40,7 @@ function NewGroupDialog({ handleClose }) {
         p={{ xs: "1rem", sm: "3rem" }}
         spacing={"2rem"}
         maxWidth="35rem"
-        minWidth="17rem"
+        minWidth="25rem"
       >
         {/* <DialogActions sx={{ justifyContent: "flex-end", padding: 0 }}>
           <IconButton onClick={handleClose}>
@@ -48,13 +59,17 @@ function NewGroupDialog({ handleClose }) {
           onChange={groupName.changeHandler}
         />
         <Typography variant={"body1"}>Members</Typography>
-
+                  <Typography> {
+                      selectedMembers.map((member)=><li>{member}</li>)
+                    }
+                </Typography>
         <Stack>
-          {users.map((user) => (
+          {members.map((user) => (
             <UserItem
               user={user}
               key={user._id}
               handler={selectMemberHandler}
+              isAdded = { selectedMembers.includes(user._id)}
             ></UserItem>
           ))}
         </Stack>
@@ -63,7 +78,7 @@ function NewGroupDialog({ handleClose }) {
           <Button variant="text" color="error" size="large">
             Cancel
           </Button>
-          <Button variant="container" size="large" onClick={submit}>Create</Button>
+          <Button variant="container" size="large" >Create</Button>
         </Stack>
       </Stack>
     </Dialog>

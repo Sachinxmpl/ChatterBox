@@ -9,8 +9,8 @@ function ChatList({
   onlineUsers = [],
   newMessagesAlert = [
     {
-      chatId: "",
-      count: 0,
+      chatId: "1",
+      count: 4,
     },
   ],
   handleDeleteChat,
