@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        gap : 10px ; 
+        margin: 0 auto;
+      "
+      action="/user/newuser"
+      method="POST"
+     enctype="multipart/form-data"
+    >
+      <h1>Enter details</h1>
+      <input type="text" name="name" placeholder="entername" required />
+      <input type="text" name="username" placeholder="username" required />
+      <input type="password" name="password" placeholder="password" required />
+      <input type="file" name="avatar" required placeholder="Select files"/>
+      <button>Submit</button>
+    </form>
+  </body>
+</html>
