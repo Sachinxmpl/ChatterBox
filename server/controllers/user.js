@@ -1,18 +1,23 @@
 import User from "../models/user.js";
+
+
 //create a new user 
 const createNewUser = async(req,res)=>{
 
-    console.log(process.env.CLOUD_NAME)
-    console.log(process.env.CLOUD_API_KEY)
-    console.log(process.env.CLOUD_API_SECRET)
-    console.log(req.body)
-    console.log(req.file)
+    const {name , username , password , bio } = req.body
+    const {path , filename} = req.file
+    const avatar = {
+        public_id :  filename , 
+        url : path
+    }
+    const newUser = new User ({
+        name , username , password , bio , avatar
+    })
+    await newUser.save()
     
-    // const newUser =  new User(sampleUser)
-    // await newUser.save()
-
     res.status(201).json({
-        message : "User created successfully" 
+        message : "User created successfully"  ,
+        newUser
     })
 }
 

@@ -1,13 +1,13 @@
 import express from "express";
 const app = express()
-
 import userRoutes from "./routes/user.js"
 import connectdb from "./utils/connectdb.js";
 import dotenv from "dotenv"
 
-dotenv.config({
-    path:"./.env"
-})
+if (process.env.NODE_ENV !== 'production') {
+    dotenv.config();
+  }
+  
 const port = process.env.PORT || 3000
 
 connectdb(process.env.MONGO_URI)

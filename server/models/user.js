@@ -1,4 +1,6 @@
 import { Schema, model } from "mongoose";
+import bcrypt from "bcrypt";
+
 
 const userSchema = new Schema({
     name: {
@@ -10,6 +12,10 @@ const userSchema = new Schema({
         required: true,
         unique: true,
     },
+    bio : {
+        type : String , 
+        required : false
+    } , 
     password: {
         type: String,
         required: true,
@@ -27,6 +33,15 @@ const userSchema = new Schema({
     },
 }, {
     timestamps: true,
+});
+
+userSchema.pre("save", async function (next) {
+    console.log("inside the pre middleware ")
+    if(!this.isModified("password")) {
+        return next()
+    }
+    this.password =  await bcrypt.hash(this.password, 10);
+    next()
 });
 
 const User = model("User", userSchema);
