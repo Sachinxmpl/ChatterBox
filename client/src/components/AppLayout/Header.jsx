@@ -53,7 +53,7 @@ function Header() {
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position='static' elevation={0} sx={{ bgcolor: 'black', height: "4rem" }} >
+                <AppBar position='static' elevation={0} sx={{ bgcolor: '#1E201E', height: "4rem" }} >
                     <Toolbar>
 
                         <Typography variant='h6' sx={{ display: { xs: "none", sm: "block" } }}>

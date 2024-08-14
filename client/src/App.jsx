@@ -12,7 +12,7 @@ const Group = lazy(() => import("./pages/Group"));
 const Notfound = lazy(() => import("./pages/Notfound"));
 
 
-let user = false;
+let user = true;
 
 function App() {
     return (
