@@ -4,6 +4,9 @@ import { KeyboardBackspace as KeyboardBackspaceIcon  , Menu as MenuIcon} from "@
 import { useNavigate } from "react-router-dom";
 import { Box, Stack } from "@mui/system";
 import { useState } from "react";
+import {LinkedComponent} from "../components/styled/Link";
+import AvatarCard from "../shared/AvatarCard";
+import {Samplechats} from "../constants/sampleChat";
 
 const IconbtnCompoment = ({handleMobile ,navigateBack}) => {
   return (
@@ -49,6 +52,8 @@ const IconbtnCompoment = ({handleMobile ,navigateBack}) => {
 
 function Group() {
 
+  const chatId = "1" ; 
+
   const [isMobileMenu , setIsMobileMenu] = useState(false)
   const handleMobile = () =>{
         setIsMobileMenu((prev)=>!prev)
@@ -77,7 +82,7 @@ function Group() {
           sm={4}
           bgcolor={"#ECDFCC"}
         >
-                <GroupList/>
+                <GroupList myGroups={Samplechats} chatId={chatId}/>
         </Grid>
         <Grid
           item
@@ -118,7 +123,7 @@ const GroupList = ({w="100%" ,myGroups=[] , chatId })=>{
         <Stack>
               {
                   myGroups.length >0 ? (
-                    myGroups.map((group) => {})
+                    myGroups.map((group) => <GroupListItem  group={group} chatId={chatId} key={group._id} />)
                   ) : 
                   (
                     <Typography textAlign={"center"} padding={"1rem"}>
@@ -133,8 +138,16 @@ const GroupList = ({w="100%" ,myGroups=[] , chatId })=>{
 
 const GroupListItem = memo(({group , chatId}) =>{
   const {name , avatar , _id } = group 
-
-  return 
+  return (
+    <LinkedComponent to={`?group=${_id}`} 
+        
+    >
+      <Stack direction={"row"} alignItems={"center"} >
+        <AvatarCard avatar={avatar} />  
+        <Typography>{name}</Typography>
+      </Stack>
+    </LinkedComponent>
+  )
 })
 
 export default Group;
