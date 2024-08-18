@@ -1,4 +1,5 @@
 import User from "../models/user.js";
+import { sendToken } from "../utils/jwtToken.js";
 
 
 //create a new user
@@ -15,10 +16,8 @@ const createNewUser = async(req,res)=>{
     })
     await newUser.save()
     
-    res.status(201).json({
-        message : "User created successfully"  ,
-        newUser
-    })
+
+    sendToken(res,newUser , 201 , "User created successfully")
 }
 
 
