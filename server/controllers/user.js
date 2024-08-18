@@ -43,7 +43,9 @@ const loginuser = async(req,res)=>{
 }
 
 
-const getMyProfile = async(req,res)=>{}
+const getMyProfile = async(req,res)=>{
+  //find user by id and simpel display 
+}
 
 
 export { createNewUser  , loginuser , getMyProfile};
