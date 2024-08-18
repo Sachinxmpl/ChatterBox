@@ -1,4 +1,5 @@
 import multer from "multer";
+// import { storage } from "../cloudinaryconfig.js";
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -6,11 +7,11 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-      cb(null, file.fieldname+".jpg")
+      cb(null, file.fieldname+Math.random().toString()+ ".jpg")
     }
   })
   
-  const multerUpload = multer({ storage: storage })
+  const multerUpload = multer({ storage })
 
   export {
     multerUpload

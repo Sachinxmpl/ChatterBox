@@ -1,11 +1,11 @@
 import User from "../models/user.js";
 
 
-//create a new user 
+//create a new user
 const createNewUser = async(req,res)=>{
-
     const {name , username , password , bio } = req.body
     const {path , filename} = req.file
+
     const avatar = {
         public_id :  filename , 
         url : path

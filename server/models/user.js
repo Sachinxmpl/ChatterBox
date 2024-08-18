@@ -36,14 +36,14 @@ const userSchema = new Schema({
 });
 
 userSchema.pre("save", async function (next) {
-    console.log("inside the pre middleware ")
     if(!this.isModified("password")) {
         return next()
     }
-    this.password =  await bcrypt.hash(this.password, 10);
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
     next()
 });
 
-const User = model("User", userSchema);
 
+const User = model("User", userSchema);
 export default User;
