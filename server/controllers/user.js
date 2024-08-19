@@ -24,7 +24,6 @@ const createNewUser = wrapAsync(async (req, res) => {
 
 
 const loginuser = wrapAsync(async(req,res , next)=>{
-  abcd=abcd
     const {username  , password} = req.body ; 
     const user = await User.findOne({username}).select("+password")
     if(!user){
@@ -41,9 +40,26 @@ const loginuser = wrapAsync(async(req,res , next)=>{
 })
 
 
-const getMyProfile = async(req,res)=>{
-  //find user by id and simpel display 
+const getMyProfile = (req,res)=>{
+  console.log(req.user)
+  const user = req.user 
+  res.status(200).json({
+    success : "true" , 
+    user : user 
+  })
 }
 
 
-export { createNewUser  , loginuser , getMyProfile};
+const logoutuser = (req,res)=>{
+  res.cookie("useraccesstoken" , "" , {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+  res.status(200).json({
+    success : true ,
+    message : "User logged out successfully"
+  })
+}
+
+
+export { createNewUser  , loginuser , getMyProfile , logoutuser};
