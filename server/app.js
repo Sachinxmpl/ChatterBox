@@ -3,6 +3,7 @@ const app = express()
 import userRoutes from "./routes/user.js"
 import connectdb from "./utils/connectdb.js";
 import dotenv from "dotenv"
+import { errorMiddleware } from "./middlewares/error.js";
 
 
 if (process.env.NODE_ENV !== 'production') {
@@ -10,6 +11,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const port = process.env.PORT || 3000
 connectdb(process.env.MONGO_URI)
+
 
 
 //middlewares
@@ -23,6 +25,13 @@ app.get("/", (req,res)=>{
 })
 
 app.use("/user" , userRoutes)
+
+
+
+
+
+
+app.use(errorMiddleware)
 
 app.listen(port , ()=>{
     console.log(`Server is running on port ${port}`)
