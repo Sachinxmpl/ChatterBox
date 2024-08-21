@@ -1,5 +1,4 @@
-import express from "express"
+import express from "express";
 const router = express.Router()
 
-
-export 
+export default router   
