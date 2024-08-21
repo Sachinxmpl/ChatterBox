@@ -28,7 +28,7 @@ app.get("/", (req,res)=>{
 })
 
 app.use("/user" , userRoutes)
-
+app.use("/chat", chatRoutes)
 
 
 
