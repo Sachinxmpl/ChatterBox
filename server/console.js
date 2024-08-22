@@ -1,0 +1,1 @@
+console.log("this is the best and the worst thing in the wolrd ")
